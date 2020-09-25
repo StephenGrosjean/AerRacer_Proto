@@ -7255,6 +7255,11 @@ PrefabInstance:
       propertyPath: highSpeedCameraPosition.z
       value: -8
       objectReference: {fileID: 0}
+    - target: {fileID: 1989555346059269972, guid: ced9467219bf1ec44a1b05dce46ca1cd,
+        type: 3}
+      propertyPath: collisionSpeedDivisor
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 2127618743383575332, guid: ced9467219bf1ec44a1b05dce46ca1cd,
         type: 3}
       propertyPath: m_LocalPosition.y

@@ -21,6 +21,7 @@ public class SpaceShipController : MonoBehaviour
     [SerializeField] private Vector3 highSpeedCameraPosition;
     [SerializeField] private Vector3 lowSpeedCameraRotation;
     [SerializeField] private Vector3 highSpeedCameraRotation;
+    [SerializeField] private float collisionSpeedDivisor;
 
     private int accelerate;
     private float turnInput;
@@ -106,14 +107,9 @@ public class SpaceShipController : MonoBehaviour
         
     }
 
-    /*private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (Vector3.Dot(transform.forward, collision.contacts[0].normal) < 0)
-        {
-            shipRigidbody.velocity /= 10;
-        }
-
-        Debug.Log(Vector3.Dot(collision.relativeVelocity, transform.forward));
-        //float lifeToRemove = Vector3.
-    }*/
+        transform.forward = Vector3.Reflect(transform.forward, collision.contacts[0].normal);
+        shipRigidbody.velocity = shipRigidbody.velocity / collisionSpeedDivisor;
+    }
 }
