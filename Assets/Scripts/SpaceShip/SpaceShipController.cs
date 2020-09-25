@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class SpaceShipController : MonoBehaviour
 {
+    
     [SerializeField] private Rigidbody shipRigidbody;
     [SerializeField] private float forwardAcceleration;
     [SerializeField] private float deceleration;
@@ -12,8 +13,14 @@ public class SpaceShipController : MonoBehaviour
     [SerializeField] private float turnStrenght;
     [SerializeField] private float maxForwardSpeed;
     [SerializeField] private float maxBackwardSpeed;
+    [SerializeField] private float speedInverseDirectionMultiplier;
     [SerializeField] private GameObject ship;
     [SerializeField] private float life;
+    [SerializeField] private Camera shipCamera;
+    [SerializeField] private Vector3 lowSpeedCameraPosition;
+    [SerializeField] private Vector3 highSpeedCameraPosition;
+    [SerializeField] private Vector3 lowSpeedCameraRotation;
+    [SerializeField] private Vector3 highSpeedCameraRotation;
 
     private int accelerate;
     private float turnInput;
@@ -22,7 +29,6 @@ public class SpaceShipController : MonoBehaviour
 
     private void Update()
     {
-        
         accelerate = (int)Input.GetAxisRaw("Vertical");
 
         turnInput = Input.GetAxis("Horizontal");
@@ -33,24 +39,40 @@ public class SpaceShipController : MonoBehaviour
         velocity = Vector3.Dot(shipRigidbody.velocity, transform.forward);
         if (accelerate > 0)
         {
-            if (velocity < maxForwardSpeed)
+            if (velocity >= 0)
             {
-                velocity += forwardAcceleration * Time.deltaTime;
+                if (velocity < maxForwardSpeed)
+                {
+                    velocity += forwardAcceleration * Time.deltaTime;
+                }
+                else
+                {
+                    velocity = maxForwardSpeed;
+                }
             }
             else
             {
-                velocity = maxForwardSpeed;
+                velocity += forwardAcceleration * Time.deltaTime * speedInverseDirectionMultiplier;
             }
+            
         }
         else if (accelerate < 0)
         {
-            if (velocity > -maxBackwardSpeed)
+            if (velocity <= 0)
             {
-                velocity -= backwardAcceleration * Time.deltaTime;
+
+                if (velocity > -maxBackwardSpeed)
+                {
+                    velocity -= backwardAcceleration * Time.deltaTime;
+                }
+                else
+                {
+                    velocity = -maxBackwardSpeed;
+                }
             }
             else
             {
-                velocity = -maxBackwardSpeed;
+                velocity -= backwardAcceleration * Time.deltaTime * speedInverseDirectionMultiplier;
             }
         }
         else
@@ -75,6 +97,9 @@ public class SpaceShipController : MonoBehaviour
         }
 
         shipRigidbody.velocity = transform.forward * velocity;
+
+        shipCamera.transform.localPosition = Vector3.Lerp(lowSpeedCameraPosition, highSpeedCameraPosition, Mathf.Abs(velocity / maxForwardSpeed));
+        shipCamera.transform.localEulerAngles = Vector3.Lerp(lowSpeedCameraRotation, highSpeedCameraRotation, Mathf.Abs(velocity / maxForwardSpeed));
 
         transform.eulerAngles += new Vector3( 0,turnStrenght * turnInput * Time.deltaTime, 0);
         ship.transform.eulerAngles = new Vector3(-Mathf.Abs(turnInput) * 10, transform.eulerAngles.y, -turnInput * 30);
