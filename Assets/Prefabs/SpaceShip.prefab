@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &489844743316894868
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7000579935390133255}
+  m_Layer: 0
+  m_Name: CameraFollow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7000579935390133255
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489844743316894868}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5652200716498675983}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1003104817713681292
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,9 +319,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5652200716498675983}
   - component: {fileID: 8296524287491572081}
-  - component: {fileID: 1989555346059269972}
   - component: {fileID: 7406677967410367338}
   - component: {fileID: 5218182249295400684}
+  - component: {fileID: 7718302946446469108}
+  - component: {fileID: 5014879528810129949}
   m_Layer: 0
   m_Name: SpaceShip
   m_TagString: Untagged
@@ -312,6 +343,7 @@ Transform:
   m_Children:
   - {fileID: 3206104435642101306}
   - {fileID: 2127618743383575332}
+  - {fileID: 7000579935390133255}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -325,39 +357,12 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0
+  m_AngularDrag: 3
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 1
---- !u!114 &1989555346059269972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5497057870007740378}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f70f840448afb5f458f584c89da0ddcc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shipRigidbody: {fileID: 8296524287491572081}
-  forwardAcceleration: 50
-  deceleration: 30
-  backwardAcceleration: 50
-  turnStrenght: 100
-  maxForwardSpeed: 300
-  maxBackwardSpeed: 150
-  speedInverseDirectionMultiplier: 1
-  ship: {fileID: 7846178440994603071}
-  life: 0
-  shipCamera: {fileID: 5058135860577645827}
-  lowSpeedCameraPosition: {x: 0, y: 8, z: -12}
-  highSpeedCameraPosition: {x: 0, y: 15, z: -20}
-  lowSpeedCameraRotation: {x: 20, y: 0, z: 0}
-  highSpeedCameraRotation: {x: 30, y: 0, z: 0}
+  m_Constraints: 80
+  m_CollisionDetection: 2
 --- !u!65 &7406677967410367338
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -384,6 +389,49 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 2.25
   m_Center: {x: 0, y: 5, z: -0.25}
+--- !u!114 &7718302946446469108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5497057870007740378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e0bd6aa0d1079942842d3cc718ec9fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forwardForce: 50
+  rotationForce: 0.7
+  backwardForce: 30
+  brakeForce: 200
+  vehicleLeaningSideAngleMultiplier: 12
+  vehicleLeaningBackwardsAngleMultiplier: 0.01
+  hoverHeight: 0
+  shipTransform: {fileID: 5652200716498675983}
+  shipModelTransform: {fileID: 3206104435642101306}
+  shipRigidbody: {fileID: 8296524287491572081}
+  playerInput: {fileID: 5014879528810129949}
+  maximumForwardSpeed: 300
+  maximumBackwardSpeed: 100
+  maximumAngularSpeed: 2
+--- !u!114 &5014879528810129949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5497057870007740378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd6e42fc8e5af0f49926564beb1827c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  verticalAxisName: Vertical
+  horizontalAxisName: Horizontal
+  quitButtonName: Cancel
+  vehiclePowerForceInput: 0
+  vehicleRotationForceInput: 0
 --- !u!1 &5976578797829097572
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,6 +535,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2127618743383575332}
   - component: {fileID: 5058135860577645827}
+  - component: {fileID: 7931070462330003828}
   - component: {fileID: 3514820431729907160}
   m_Layer: 0
   m_Name: Camera
@@ -552,6 +601,23 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &7931070462330003828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6484326938070439101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c15edfb9a2f3a3e4ba8addbbaaf5df79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 0}
+  cameraLocalPosition: {x: 0, y: 0, z: 0}
+  cameraLocalRotation: {x: 0, y: 0, z: 0}
+  vehiclePosition: {x: 0, y: 0, z: 0}
+  vehicleRotation: {x: 0, y: 0, z: 0}
 --- !u!81 &3514820431729907160
 AudioListener:
   m_ObjectHideFlags: 0

@@ -22,6 +22,9 @@ public class SpaceShipController : MonoBehaviour
     [SerializeField] private Vector3 lowSpeedCameraRotation;
     [SerializeField] private Vector3 highSpeedCameraRotation;
     [SerializeField] private float collisionSpeedDivisor;
+    [SerializeField] GameObject cameraFollow;
+    [SerializeField] private float cameraFollowTurnPositionMultiplier;
+    [SerializeField] private float cameraFollowTurnAngleMultiplier;
 
     private int accelerate;
     private float turnInput;
@@ -33,6 +36,7 @@ public class SpaceShipController : MonoBehaviour
         accelerate = (int)Input.GetAxisRaw("Vertical");
 
         turnInput = Input.GetAxis("Horizontal");
+
     }
 
     private void FixedUpdate()
@@ -104,7 +108,9 @@ public class SpaceShipController : MonoBehaviour
 
         transform.eulerAngles += new Vector3( 0,turnStrenght * turnInput * Time.deltaTime, 0);
         ship.transform.eulerAngles = new Vector3(-Mathf.Abs(turnInput) * 10, transform.eulerAngles.y, -turnInput * 30);
-        
+
+        cameraFollow.transform.localPosition = new Vector3(turnInput * cameraFollowTurnPositionMultiplier, cameraFollow.transform.localPosition.y, cameraFollow.transform.localPosition.z);
+        cameraFollow.transform.localEulerAngles = new Vector3(cameraFollow.transform.localEulerAngles.x, turnInput * cameraFollowTurnAngleMultiplier, cameraFollow.transform.localEulerAngles.z);
     }
 
     private void OnCollisionEnter(Collision collision)
