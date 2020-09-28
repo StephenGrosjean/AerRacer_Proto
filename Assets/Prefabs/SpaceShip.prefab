@@ -48,7 +48,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1028116099146829291
 Transform:
   m_ObjectHideFlags: 0
@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5806948331353879930
 Transform:
   m_ObjectHideFlags: 0
@@ -234,7 +234,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8932266118903965011
 Transform:
   m_ObjectHideFlags: 0
@@ -372,7 +372,7 @@ BoxCollider:
   m_GameObject: {fileID: 5497057870007740378}
   m_Material: {fileID: 13400000, guid: 1c0a86ae9e222cc4e9fd6b13421ec053, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 4, y: 1.5, z: 4.5}
   m_Center: {x: 0, y: 5, z: -0.25}
@@ -385,7 +385,7 @@ SphereCollider:
   m_GameObject: {fileID: 5497057870007740378}
   m_Material: {fileID: 13400000, guid: 1c0a86ae9e222cc4e9fd6b13421ec053, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 2.25
   m_Center: {x: 0, y: 5, z: -0.25}
@@ -450,7 +450,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2961208964850799292
 Transform:
   m_ObjectHideFlags: 0
@@ -742,6 +742,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: biplane
+      objectReference: {fileID: 0}
+    - target: {fileID: 9131859547997866441, guid: ede375fa023cef64cbef944cb32947b5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ede375fa023cef64cbef944cb32947b5, type: 3}

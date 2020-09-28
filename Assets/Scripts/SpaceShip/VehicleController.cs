@@ -11,8 +11,10 @@ public class VehicleController : MonoBehaviour
     [SerializeField] private float rotationForce;
     [SerializeField] private float backwardForce;
     [SerializeField] private float brakeForce;
+    [SerializeField] [Range(0,1)] private float speedDecreasePercentage;
     [SerializeField] private float vehicleLeaningSideAngleMultiplier;
     [SerializeField] private float vehicleLeaningBackwardsAngleMultiplier;
+    [SerializeField] private float vehiculeLeaningTurnAngleMultiplier;
 
     [Header("Hover Settings")] 
     [SerializeField] private float hoverHeight;
@@ -38,7 +40,7 @@ public class VehicleController : MonoBehaviour
 
     void Update()
     {
-        shipModelTransform.localEulerAngles = new Vector3(speed * Mathf.Abs(shipRigidbody.angularVelocity.y) * -vehicleLeaningBackwardsAngleMultiplier, shipModelTransform.localEulerAngles.y, -shipRigidbody.angularVelocity.y * vehicleLeaningSideAngleMultiplier);
+        shipModelTransform.localEulerAngles = new Vector3(speed * Mathf.Abs(shipRigidbody.angularVelocity.y) * -vehicleLeaningBackwardsAngleMultiplier, shipRigidbody.angularVelocity.y * speed * vehiculeLeaningTurnAngleMultiplier, -shipRigidbody.angularVelocity.y * vehicleLeaningSideAngleMultiplier);
     }
 
     void VehicleHover()
@@ -48,7 +50,7 @@ public class VehicleController : MonoBehaviour
 
     void VehicleMovements()
     {
-        float rotationTorque = playerInput.vehicleRotationForceInput * rotationForce /*- shipRigidbody.angularVelocity.y*/;
+        float rotationTorque = playerInput.vehicleRotationForceInput * rotationForce/*- shipRigidbody.angularVelocity.y*/;
 
         shipRigidbody.AddRelativeTorque(0f, rotationTorque, 0f, ForceMode.VelocityChange);
 
@@ -114,7 +116,7 @@ public class VehicleController : MonoBehaviour
         }
         else
         {
-            
+            shipRigidbody.velocity = shipRigidbody.velocity * speedDecreasePercentage;
         }
     }
 

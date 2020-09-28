@@ -7627,7 +7627,7 @@ PrefabInstance:
     - target: {fileID: 5218182249295400684, guid: ced9467219bf1ec44a1b05dce46ca1cd,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5497057870007740378, guid: ced9467219bf1ec44a1b05dce46ca1cd,
         type: 3}
@@ -7697,22 +7697,7 @@ PrefabInstance:
     - target: {fileID: 7406677967410367338, guid: ced9467219bf1ec44a1b05dce46ca1cd,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7718302946446469108, guid: ced9467219bf1ec44a1b05dce46ca1cd,
-        type: 3}
-      propertyPath: rotationForce
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7718302946446469108, guid: ced9467219bf1ec44a1b05dce46ca1cd,
-        type: 3}
-      propertyPath: forwardForce
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 7718302946446469108, guid: ced9467219bf1ec44a1b05dce46ca1cd,
-        type: 3}
-      propertyPath: backwardForce
-      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7718302946446469108, guid: ced9467219bf1ec44a1b05dce46ca1cd,
         type: 3}
@@ -7721,43 +7706,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7718302946446469108, guid: ced9467219bf1ec44a1b05dce46ca1cd,
         type: 3}
-      propertyPath: maximumForwardSpeed
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 7718302946446469108, guid: ced9467219bf1ec44a1b05dce46ca1cd,
-        type: 3}
-      propertyPath: maximumBackwardSpeed
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 7718302946446469108, guid: ced9467219bf1ec44a1b05dce46ca1cd,
-        type: 3}
-      propertyPath: brakeForce
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 7718302946446469108, guid: ced9467219bf1ec44a1b05dce46ca1cd,
-        type: 3}
       propertyPath: vehicleLeaningAngleMultiplier
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7718302946446469108, guid: ced9467219bf1ec44a1b05dce46ca1cd,
         type: 3}
-      propertyPath: maximumAngularSpeed
-      value: 2
+      propertyPath: rotationForce
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 7718302946446469108, guid: ced9467219bf1ec44a1b05dce46ca1cd,
         type: 3}
-      propertyPath: vehicleLeaningSideAngleMultiplier
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7718302946446469108, guid: ced9467219bf1ec44a1b05dce46ca1cd,
-        type: 3}
-      propertyPath: vehicleLeaningBackwardsAngleMultiplier
-      value: 0.01
+      propertyPath: vehiculeLeaningTurnAngleMultiplier
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 8296524287491572081, guid: ced9467219bf1ec44a1b05dce46ca1cd,
         type: 3}
       propertyPath: m_Constraints
-      value: 80
+      value: 84
       objectReference: {fileID: 0}
     - target: {fileID: 8296524287491572081, guid: ced9467219bf1ec44a1b05dce46ca1cd,
         type: 3}
